@@ -12,7 +12,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Submit data to your SALT form
+    // For now, just return success without calling SALT form
+    // TODO: Uncomment the SALT form submission when ready
+    /*
     const saltURL = "https://insuranceform.app/l/irm-insurance-quot/Li_rVkxO0ozaY";
     
     await axios.post(saltURL, {
@@ -22,16 +24,24 @@ export default async function handler(req, res) {
       phone,
       insurance_type
     });
+    */
 
     res.status(200).json({
       success: true,
-      message: "Quote successfully submitted to IRM Insurance!"
+      message: "Quote successfully submitted to IRM Insurance!",
+      data: {
+        first_name,
+        last_name,
+        email,
+        phone,
+        insurance_type
+      }
     });
   } catch (error) {
-    console.error("Error submitting to SALT:", error);
+    console.error("Error processing quote:", error);
     res.status(500).json({
       success: false,
-      message: "Error submitting quote to SALT form.",
+      message: "Error processing quote.",
       details: error.message
     });
   }
