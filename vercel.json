@@ -1,10 +1,4 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "api/submit-quote.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/api/submit-quote", "dest": "api/submit-quote.js" }
-    ]
+    "version": 2
   }
   
