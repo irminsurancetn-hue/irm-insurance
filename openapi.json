@@ -1,0 +1,91 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "IRM Insurance Quote Action",
+    "version": "1.0.0",
+    "description": "Collects quote information and sends email to IRM Insurance"
+  },
+  "servers": [
+    {
+      "url": "https://irm-insurance.vercel.app"
+    }
+  ],
+  "paths": {
+    "/api/send-email": {
+      "post": {
+        "operationId": "submitInsuranceQuote",
+        "summary": "Submit insurance quote via email",
+        "description": "Submits insurance quote information via email to webbdevabdul@gmail.com",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": "Customer's first name"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": "Customer's last name"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Customer's email address"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Customer's phone number"
+                  },
+                  "contact_method": {
+                    "type": "string",
+                    "enum": [
+                      "Email",
+                      "Phone"
+                    ],
+                    "description": "Preferred contact method"
+                  },
+                  "insurance_type": {
+                    "type": "string",
+                    "enum": [
+                      "Home",
+                      "Auto",
+                      "Other"
+                    ],
+                    "description": "Type of insurance needed"
+                  },
+                  "additional_info": {
+                    "type": "string",
+                    "description": "Additional information or comments"
+                  }
+                },
+                "required": [
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "contact_method",
+                  "insurance_type"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quote submitted successfully to SALT form"
+          },
+          "400": {
+            "description": "Invalid input data"
+          },
+          "500": {
+            "description": "Error submitting to SALT form"
+          }
+        }
+      }
+    }
+  }
+}
