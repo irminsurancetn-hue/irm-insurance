@@ -12,31 +12,45 @@ export default async function handler(req, res) {
   }
 
   try {
-    // For now, just return success without calling SALT form
-    // TODO: Uncomment the SALT form submission when ready
-    /*
+    // Try to submit to SALT form
     const saltURL = "https://insuranceform.app/l/irm-insurance-quot/Li_rVkxO0ozaY";
     
-    await axios.post(saltURL, {
-      first_name,
-      last_name,
-      email,
-      phone,
-      insurance_type
-    });
-    */
-
-    res.status(200).json({
-      success: true,
-      message: "Quote successfully submitted to IRM Insurance!",
-      data: {
+    try {
+      await axios.post(saltURL, {
         first_name,
         last_name,
         email,
         phone,
         insurance_type
-      }
-    });
+      });
+      
+      res.status(200).json({
+        success: true,
+        message: "Quote successfully submitted to IRM Insurance!"
+      });
+    } catch (saltError) {
+      // If SALT form is blocked or fails, log the data and return success
+      console.log("SALT form submission failed, but data received:", {
+        first_name,
+        last_name,
+        email,
+        phone,
+        insurance_type,
+        error: saltError.message
+      });
+      
+      res.status(200).json({
+        success: true,
+        message: "Quote received! (SALT form temporarily unavailable - data logged)",
+        data: {
+          first_name,
+          last_name,
+          email,
+          phone,
+          insurance_type
+        }
+      });
+    }
   } catch (error) {
     console.error("Error processing quote:", error);
     res.status(500).json({
