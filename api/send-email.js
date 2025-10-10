@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     // Email content
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'webbdevabdul@gmail.com',
+      to: 'webdevabdul@gmail.com',
       subject: `New Insurance Quote Request - ${first_name} ${last_name}`,
       html: `
         <h2>New Insurance Quote Request</h2>
@@ -81,7 +81,7 @@ This quote was submitted through the IRM Insurance GPT Action.
 
     res.status(200).json({
       success: true,
-      message: "Quote submitted successfully! Email sent to webbdevabdul@gmail.com",
+      message: "Quote submitted successfully! Email sent to webdevabdul@gmail.com",
       messageId: info.messageId,
       data: {
         first_name,
