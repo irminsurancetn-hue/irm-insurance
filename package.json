@@ -1,9 +1,12 @@
 {
     "name": "irm-insurance-api",
     "version": "1.0.0",
+    "type": "module",
     "main": "api/submit-quote.js",
     "dependencies": {
         "axios": "^1.6.7",
+        "dotenv": "^17.2.3",
+        "express": "^5.1.0",
         "nodemailer": "^7.0.9"
     }
 }
