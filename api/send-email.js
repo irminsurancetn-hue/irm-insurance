@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     // Email content
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'webdevabdul@gmail.com',
+      to: 'insurance@tninsurancestore.com',
       subject: `New Insurance Quote Request - ${first_name} ${last_name}`,
       html: `
         <h2>New Insurance Quote Request</h2>
